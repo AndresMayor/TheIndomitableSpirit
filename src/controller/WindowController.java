@@ -1,5 +1,6 @@
 package controller;
 
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -37,16 +38,39 @@ public class WindowController implements Initializable {
 			MenuItem diez = new MenuItem("10");
 			mb.getItems().clear();
 			mb.getItems().addAll(siete,ocho,nueve,diez);
+			
 			siete.setOnAction(e -> {
 				
 					
-				addHorseRider();
+				addHorseRider(7);
 				
 			
 				
 			});
+			ocho.setOnAction(e -> {
+				
+					
+				addHorseRider(8);
+				
 			
+				
+			});
+			nueve.setOnAction(e -> {
+				
+					
+				addHorseRider(9);
+				
 			
+				
+			});
+			diez.setOnAction(e -> {
+				
+					
+				addHorseRider(10);
+				
+			
+				
+			});
 			
 			
 		
@@ -54,8 +78,9 @@ public class WindowController implements Initializable {
 	
 	}
 	
-	public void addHorseRider() {
+	public void addHorseRider(int number) {
 		
+		//con ese numero que llega por  parametros pienso en respetir  eso  esas veces
 		
 		ap.getChildren().clear();
 		
@@ -97,11 +122,24 @@ public class WindowController implements Initializable {
 		agr.setLayoutX(0);
 		agr.setLayoutY(90);
 		ap.getChildren().add(agr);
+		
+		
+		
 		agr.setOnAction(e ->{
-			HorseRider hr = new HorseRider(nameC.getText(),nameJi.getText(),Integer.parseInt(track.getText()));
-			raceCourse.addHorse(hr);
+			
+			int n =Integer.parseInt(trackK.getText());
+			String nameHorse = nameC.getText();
+			String nameJinete = nameJi.getText();
+			
+			HorseRider hr = new HorseRider(nameHorse,nameJinete,n);
+		
+				raceCourse.addHorse(hr);
+				
+			
 		}
+		
 		);
+		
 		}
 		
 	}
