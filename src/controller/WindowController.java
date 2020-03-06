@@ -1,19 +1,112 @@
 package controller;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
-import model.RaceCourse;
+import javafx.scene.layout.AnchorPane;
+import model.*;
 
-public class WindowController {
+
+public class WindowController implements Initializable {
 
 	
-	private RaceCourse racecourse;
+	private RaceCourse raceCourse;
 	
 	
 	@FXML
-	private TextField tfTop;
+	private AnchorPane ap;
+	
 	@FXML
-	private Button b1;
+	private MenuButton mb;
+	
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		
+		
+			
+			MenuItem siete  = new MenuItem("7");
+			MenuItem ocho = new MenuItem("8");
+			MenuItem nueve  = new MenuItem("9");
+			MenuItem diez = new MenuItem("10");
+			mb.getItems().clear();
+			mb.getItems().addAll(siete,ocho,nueve,diez);
+			siete.setOnAction(e -> {
+				
+					
+				addHorseRider();
+				
+			
+				
+			});
+			
+			
+			
+			
+		
+	
+	
+	}
+	
+	public void addHorseRider() {
+		
+		
+		ap.getChildren().clear();
+		
+		
+		
+			
+		Label name = new Label("Nombre del Caballo");
+		name.setLayoutX(0);
+		name.setLayoutY(0);
+		
+		TextField nameC = new TextField();
+		nameC.setLayoutX(200);
+		nameC.setLayoutY(0);
+		
+		ap.getChildren().add(name);
+		ap.getChildren().add(nameC);
+		Label nameJ = new Label("Nombre del Jinete");
+		nameJ.setLayoutX(0);
+		nameJ.setLayoutY(30);
+		
+		TextField nameJi = new TextField();
+		nameJi.setLayoutX(200);
+		nameJi.setLayoutY(30);
+		ap.getChildren().add(nameJ);
+		ap.getChildren().add(nameJi);
+		
+		
+		Label track = new Label("Pista");
+		track.setLayoutX(0);
+		track.setLayoutY(60);
+		
+		TextField trackK = new TextField();
+		trackK.setLayoutX(200);
+		trackK.setLayoutY(60);
+		ap.getChildren().add(track);
+		ap.getChildren().add(trackK);
+		
+		Button agr  = new Button("Agregar Jinete");
+		agr.setLayoutX(0);
+		agr.setLayoutY(90);
+		ap.getChildren().add(agr);
+		agr.setOnAction(e ->{
+			HorseRider hr = new HorseRider(nameC.getText(),nameJi.getText(),Integer.parseInt(track.getText()));
+			raceCourse.addHorse(hr);
+		}
+		);
+		}
+		
+	}
 
-}
+	
+	
+
+
