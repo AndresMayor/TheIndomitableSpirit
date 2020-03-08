@@ -17,7 +17,8 @@ public class RaceCourse{
 	}
 	
 	public void addHorse(HorseRider h) {
-		horses.offer(h);
+	//	horses.offer(h);
+		horses.add(h);
 	}
 	
 	public Queue<HorseRider> game() {
