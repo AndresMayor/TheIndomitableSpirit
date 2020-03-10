@@ -10,6 +10,14 @@ public class RaceCourse{
 	private Queue<HorseRider> horses;
 	private int size;
 	
+	public Queue<HorseRider> getHorses() {
+		return horses;
+	}
+
+	public void setHorses(Queue<HorseRider> horses) {
+		this.horses = horses;
+	}
+
 	public RaceCourse() {
 		
 		horses = new LinkedList<HorseRider>();

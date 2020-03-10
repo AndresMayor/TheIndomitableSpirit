@@ -27,10 +27,19 @@ public class WindowController implements Initializable {
 	@FXML
 	private MenuButton mb;
 	
+	private int cont;
+	private Label name;
+	private Label nameJ;
+	private Label track;
+	private TextField nameC;
+	private TextField nameJi;
+	private TextField trackK;
+	private Button agr;
+	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
-		
+			raceCourse = new RaceCourse();
 			
 			MenuItem siete  = new MenuItem("7");
 			MenuItem ocho = new MenuItem("8");
@@ -44,6 +53,7 @@ public class WindowController implements Initializable {
 					
 				addHorseRider(7);
 				
+					
 			
 				
 			});
@@ -80,69 +90,102 @@ public class WindowController implements Initializable {
 	
 	public void addHorseRider(int number) {
 		
-		//con ese numero que llega por  parametros pienso en respetir  eso  esas veces
 		
 		ap.getChildren().clear();
 		
-		
-		
 			
-		Label name = new Label("Nombre del Caballo");
+		name = new Label("Nombre del Caballo");
 		name.setLayoutX(0);
 		name.setLayoutY(0);
 		
-		TextField nameC = new TextField();
+		nameC = new TextField();
 		nameC.setLayoutX(200);
 		nameC.setLayoutY(0);
 		
 		ap.getChildren().add(name);
 		ap.getChildren().add(nameC);
-		Label nameJ = new Label("Nombre del Jinete");
+		nameJ = new Label("Nombre del Jinete");
 		nameJ.setLayoutX(0);
 		nameJ.setLayoutY(30);
 		
-		TextField nameJi = new TextField();
+		nameJi = new TextField();
 		nameJi.setLayoutX(200);
 		nameJi.setLayoutY(30);
 		ap.getChildren().add(nameJ);
 		ap.getChildren().add(nameJi);
 		
 		
-		Label track = new Label("Pista");
+		track = new Label("Pista");
 		track.setLayoutX(0);
 		track.setLayoutY(60);
 		
-		TextField trackK = new TextField();
+		trackK = new TextField();
 		trackK.setLayoutX(200);
 		trackK.setLayoutY(60);
 		ap.getChildren().add(track);
 		ap.getChildren().add(trackK);
 		
-		Button agr  = new Button("Agregar Jinete");
+		agr  = new Button("Agregar Jinete");
 		agr.setLayoutX(0);
 		agr.setLayoutY(90);
 		ap.getChildren().add(agr);
 		
 		
-		
+		cont=1;
 		agr.setOnAction(e ->{
 			
-			int n =Integer.parseInt(trackK.getText());
-			String nameHorse = nameC.getText();
-			String nameJinete = nameJi.getText();
-			
-			HorseRider hr = new HorseRider(nameHorse,nameJinete,n);
-		
-				raceCourse.addHorse(hr);
 				
+				if(cont < number) {
+				String n =trackK.getText();
+				String nameHorse = nameC.getText();
+				String nameJinete = nameJi.getText();
+				
+				HorseRider hr = new HorseRider(nameHorse,nameJinete,Integer.parseInt(n));
+			
+					raceCourse.addHorse(hr);
+					System.out.println(raceCourse.getHorses().toString());
+					nameC.setText("");
+					nameJi.setText("");
+					trackK.setText("");
+					System.out.println(cont);
+					cont++;
+				}else if(cont==number) {
+					ap.getChildren().clear();
+					
+					inicializarPartida();
+					
+				}
+			
 			
 		}
 		
 		);
 		
 		}
+	
+	
+	public void inicializarPartida() {
 		
+		Button IniciarPartida = new Button("Iniciar Partida");
+		IniciarPartida.setLayoutX(0);
+		IniciarPartida.setLayoutY(0);
+		
+		Button Apuesta = new Button("Realizar Apuesta");
+		Apuesta.setLayoutX(0);
+		Apuesta.setLayoutY(30);
+		
+		Button ConsultarApuesta = new Button("Consultar Apuesta");
+		ConsultarApuesta.setLayoutX(0);
+		ConsultarApuesta.setLayoutY(60);
+		ap.getChildren().add(IniciarPartida);
+		ap.getChildren().add(Apuesta);
+		ap.getChildren().add(ConsultarApuesta);
+		}
+	
 	}
+		
+	
+
 
 	
 	
