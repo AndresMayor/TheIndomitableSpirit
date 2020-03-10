@@ -166,9 +166,9 @@ public class WindowController implements Initializable {
 	
 	public void inicializarPartida() {
 		
-		Button IniciarPartida = new Button("Iniciar Partida");
-		IniciarPartida.setLayoutX(0);
-		IniciarPartida.setLayoutY(0);
+		Button iniciarPartida = new Button("Iniciar Partida");
+		iniciarPartida.setLayoutX(0);
+		iniciarPartida.setLayoutY(0);
 		
 		Button Apuesta = new Button("Realizar Apuesta");
 		Apuesta.setLayoutX(0);
@@ -177,15 +177,26 @@ public class WindowController implements Initializable {
 		Button ConsultarApuesta = new Button("Consultar Apuesta");
 		ConsultarApuesta.setLayoutX(0);
 		ConsultarApuesta.setLayoutY(60);
-		ap.getChildren().add(IniciarPartida);
+		ap.getChildren().add(iniciarPartida);
 		ap.getChildren().add(Apuesta);
 		ap.getChildren().add(ConsultarApuesta);
-		}
+		
+		iniciarPartida.setOnAction(e -> {
+			
+			
+			raceCourse.game();
+			System.out.print(raceCourse.game());
+			
+				
+		
+			
+		});
+		
 	
 	}
 		
 	
-
+	}
 
 	
 	
