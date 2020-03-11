@@ -35,6 +35,7 @@ public class WindowController implements Initializable {
 	private TextField nameJi;
 	private TextField trackK;
 	private Button agr;
+	private AnchorPane operations;
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -170,16 +171,18 @@ public class WindowController implements Initializable {
 		iniciarPartida.setLayoutX(0);
 		iniciarPartida.setLayoutY(0);
 		
-		Button Apuesta = new Button("Realizar Apuesta");
-		Apuesta.setLayoutX(0);
-		Apuesta.setLayoutY(30);
+		Button apuesta = new Button("Realizar Apuesta");
+		apuesta.setLayoutX(0);
+		apuesta.setLayoutY(30);
 		
 		Button ConsultarApuesta = new Button("Consultar Apuesta");
 		ConsultarApuesta.setLayoutX(0);
 		ConsultarApuesta.setLayoutY(60);
 		ap.getChildren().add(iniciarPartida);
-		ap.getChildren().add(Apuesta);
+		ap.getChildren().add(apuesta);
 		ap.getChildren().add(ConsultarApuesta);
+		
+	
 		
 		iniciarPartida.setOnAction(e -> {
 			
@@ -191,6 +194,8 @@ public class WindowController implements Initializable {
 		
 			
 		});
+	
+		
 		
 	
 	}

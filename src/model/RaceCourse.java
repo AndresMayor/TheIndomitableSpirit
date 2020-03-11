@@ -1,13 +1,17 @@
 package model;
 
-import java.util.Hashtable;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Stack;
+
+
+import java.util.ArrayList;
+
+import collections.HashTable;
+import collections.Queue;
+import collections.Stack;
 
 public class RaceCourse{
 	
 	private Queue<HorseRider> horses;
+	private HashTable<String, ArrayList<Queue<Bet>>> bet;
 	private int size;
 	
 	public Queue<HorseRider> getHorses() {
@@ -20,17 +24,17 @@ public class RaceCourse{
 
 	public RaceCourse() {
 		
-		horses = new LinkedList<HorseRider>();
-		
+		horses = new Queue<HorseRider>();
+		bet = new HashTable<String, ArrayList<Queue<Bet>>>();
 	}
 	
 	public void addHorse(HorseRider h) {
-	//	horses.offer(h);
-		horses.add(h);
+		horses.offer(h);
+		
 	}
 	
 	public Queue<HorseRider> game() {
-		Queue<HorseRider> def = new LinkedList<HorseRider>();
+		Queue<HorseRider> def = new Queue<HorseRider>();
 		HorseRider[] array = new HorseRider[10];
 		if(sizeQueue()) {
 			for (int i = 0; i < size;) {
@@ -51,7 +55,7 @@ public class RaceCourse{
 	}
 	
 	public boolean sizeQueue() {
-		size = horses.size();
+		size = horses.getSize();
 		if(size<10) {
 			return true;
 		}else {
@@ -60,7 +64,7 @@ public class RaceCourse{
 	}
 	
 	public Queue<HorseRider> rematch() {
-		size = game().size();
+		size = game().getSize();
 		Queue<HorseRider> def = game();
 		Stack<HorseRider> rematch = new Stack<HorseRider>();
 		if(sizeQueue()) {
