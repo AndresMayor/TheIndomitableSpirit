@@ -36,44 +36,34 @@ public class RaceCourse{
 	public Queue<HorseRider> game() {
 		Queue<HorseRider> def = new Queue<HorseRider>();
 		HorseRider[] array = new HorseRider[10];
-		if(sizeQueue()) {
-			for (int i = 0; i < size;) {
-				HorseRider h1 = horses.peek();
-				int pos = (int) (Math.random()*size);
-				if(array[pos]==null) {
-					array[pos] = h1;
-					horses.poll();
-					i++;
-				}
-				
+		for (int i = 0; i < size;) {
+			HorseRider h1 = horses.peek();
+			int pos = (int) (Math.random()*size);
+			if(array[pos]==null) {
+				array[pos] = h1;
+				horses.poll();
+				i++;
 			}
-			for (int i = 0; i < size; i++) {
-				def.offer(array[i]);
-			}
+		}	
+		for (int i = 0; i < size; i++) {
+			def.offer(array[i]);
 		}
 		return def;
 	}
 	
-	public boolean sizeQueue() {
-		size = horses.getSize();
-		if(size<10) {
-			return true;
-		}else {
-			return false;
-		}
+	public void sizeQueue(int number) {
+		size = number;
 	}
 	
 	public Queue<HorseRider> rematch() {
-		size = game().getSize();
 		Queue<HorseRider> def = game();
 		Stack<HorseRider> rematch = new Stack<HorseRider>();
-		if(sizeQueue()) {
-			for (int i = 0; i < size; i++) {
-				rematch.push(def.poll());
-			}
-			for (int i = 0; i < size; i++) {
-				def.offer(rematch.pop());
-			}
+		
+		for (int i = 0; i < size; i++) {
+			rematch.push(def.poll());
+		}
+		for (int i = 0; i < size; i++) {
+			def.offer(rematch.pop());
 		}
 		return def;
 	}

@@ -27,6 +27,7 @@ public class WindowController implements Initializable {
 	@FXML
 	private MenuButton mb;
 	
+	private int number;
 	private int cont;
 	private Label name;
 	private Label nameJ;
@@ -53,7 +54,7 @@ public class WindowController implements Initializable {
 				
 					
 				addHorseRider(7);
-				
+				number = 7;
 					
 			
 				
@@ -62,7 +63,7 @@ public class WindowController implements Initializable {
 				
 					
 				addHorseRider(8);
-				
+				number = 8;
 			
 				
 			});
@@ -70,7 +71,7 @@ public class WindowController implements Initializable {
 				
 					
 				addHorseRider(9);
-				
+				number = 9;
 			
 				
 			});
@@ -78,7 +79,7 @@ public class WindowController implements Initializable {
 				
 					
 				addHorseRider(10);
-				
+				number = 10;
 			
 				
 			});
@@ -136,7 +137,7 @@ public class WindowController implements Initializable {
 		agr.setOnAction(e ->{
 			
 				
-				if(cont < number) {
+				if(cont< number) {
 				String n =trackK.getText();
 				String nameHorse = nameC.getText();
 				String nameJinete = nameJi.getText();
@@ -151,6 +152,18 @@ public class WindowController implements Initializable {
 					System.out.println(cont);
 					cont++;
 				}else if(cont==number) {
+					String n =trackK.getText();
+					String nameHorse = nameC.getText();
+					String nameJinete = nameJi.getText();
+					
+					HorseRider hr = new HorseRider(nameHorse,nameJinete,Integer.parseInt(n));
+				
+						raceCourse.addHorse(hr);
+						System.out.println(raceCourse.getHorses().toString());
+						nameC.setText("");
+						nameJi.setText("");
+						trackK.setText("");
+						System.out.println(cont);
 					ap.getChildren().clear();
 					
 					inicializarPartida();
@@ -186,8 +199,7 @@ public class WindowController implements Initializable {
 		
 		iniciarPartida.setOnAction(e -> {
 			
-			
-			raceCourse.game();
+			raceCourse.sizeQueue(number);
 			System.out.print(raceCourse.game());
 			
 				
