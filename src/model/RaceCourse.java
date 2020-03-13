@@ -11,7 +11,7 @@ import collections.Stack;
 public class RaceCourse{
 	
 	private Queue<HorseRider> horses;
-	private HashTable<String, ArrayList<Queue<Bet>>> bet;
+	private HashTable<String, Bet> bets;
 	private int size;
 	
 	public Queue<HorseRider> getHorses() {
@@ -25,7 +25,7 @@ public class RaceCourse{
 	public RaceCourse() {
 		
 		horses = new Queue<HorseRider>();
-		bet = new HashTable<String, ArrayList<Queue<Bet>>>();
+		bets = new HashTable<String, Bet>();
 	}
 	
 	public void addHorse(HorseRider h) {
@@ -57,15 +57,23 @@ public class RaceCourse{
 	
 	public Queue<HorseRider> rematch() {
 		Queue<HorseRider> def = game();
-		Stack<HorseRider> rematch = new Stack<HorseRider>();
+		Stack<HorseRider> rem = new Stack<HorseRider>();
 		
 		for (int i = 0; i < size; i++) {
-			rematch.push(def.poll());
+			rem.push(def.poll());
 		}
 		for (int i = 0; i < size; i++) {
-			def.offer(rematch.pop());
+			def.offer(rem.pop());
 		}
 		return def;
+	}
+	
+	public void addBet(Bet b) {
+		bets.insert(b.getIdentificationCard(), b);
+	}
+	
+	public HashTable<String,Bet> getBets(){
+		return bets;
 	}
 	
 }

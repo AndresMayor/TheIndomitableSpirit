@@ -45,6 +45,12 @@ public class HorseRider {
 	public void setTrack(int track) {
 		this.track = track;
 	}
+
+
+	@Override
+	public String toString() {
+		return "HorseRider [nameJinete=" + nameJinete + ", nameHorse=" + nameHorse + ", track=" + track + "]";
+	}
 	
 	
 	

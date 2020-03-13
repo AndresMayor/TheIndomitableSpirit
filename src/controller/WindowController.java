@@ -31,10 +31,12 @@ public class WindowController implements Initializable {
 	private int cont;
 	private Label name;
 	private Label nameJ;
-	private Label track;
+	private Label cc;
+	private Label monto;
 	private TextField nameC;
 	private TextField nameJi;
-	private TextField trackK;
+	private TextField cc1;
+	private TextField monto1;
 	private Button agr;
 	private AnchorPane operations;
 	
@@ -115,21 +117,10 @@ public class WindowController implements Initializable {
 		nameJi.setLayoutY(30);
 		ap.getChildren().add(nameJ);
 		ap.getChildren().add(nameJi);
-		
-		
-		track = new Label("Pista");
-		track.setLayoutX(0);
-		track.setLayoutY(60);
-		
-		trackK = new TextField();
-		trackK.setLayoutX(200);
-		trackK.setLayoutY(60);
-		ap.getChildren().add(track);
-		ap.getChildren().add(trackK);
-		
+			
 		agr  = new Button("Agregar Jinete");
 		agr.setLayoutX(0);
-		agr.setLayoutY(90);
+		agr.setLayoutY(60);
 		ap.getChildren().add(agr);
 		
 		
@@ -138,35 +129,32 @@ public class WindowController implements Initializable {
 			
 				
 				if(cont< number) {
-				String n =trackK.getText();
 				String nameHorse = nameC.getText();
 				String nameJinete = nameJi.getText();
 				
-				HorseRider hr = new HorseRider(nameHorse,nameJinete,Integer.parseInt(n));
+				HorseRider hr = new HorseRider(nameHorse,nameJinete,cont);
 			
 					raceCourse.addHorse(hr);
 					System.out.println(raceCourse.getHorses().toString());
 					nameC.setText("");
 					nameJi.setText("");
-					trackK.setText("");
 					System.out.println(cont);
 					cont++;
 				}else if(cont==number) {
-					String n =trackK.getText();
+
 					String nameHorse = nameC.getText();
 					String nameJinete = nameJi.getText();
 					
-					HorseRider hr = new HorseRider(nameHorse,nameJinete,Integer.parseInt(n));
+					HorseRider hr = new HorseRider(nameHorse,nameJinete,cont);
 				
 						raceCourse.addHorse(hr);
 						System.out.println(raceCourse.getHorses().toString());
 						nameC.setText("");
 						nameJi.setText("");
-						trackK.setText("");
 						System.out.println(cont);
 					ap.getChildren().clear();
 					
-					inicializarPartida();
+					apuesta();
 					
 				}
 			
@@ -200,7 +188,7 @@ public class WindowController implements Initializable {
 		iniciarPartida.setOnAction(e -> {
 			
 			raceCourse.sizeQueue(number);
-			System.out.print(raceCourse.game());
+			System.out.print(raceCourse.game().toString());
 			
 				
 		
@@ -211,9 +199,71 @@ public class WindowController implements Initializable {
 		
 	
 	}
+	public void apuesta() {
+		cc = new Label("Numero de identificacion");
+		cc.setLayoutX(0);
+		cc.setLayoutY(0);
 		
-	
+		cc1 = new TextField();
+		cc1.setLayoutX(200);
+		cc1.setLayoutY(0);
+		
+		ap.getChildren().add(cc);
+		ap.getChildren().add(cc1);
+		
+		name = new Label("Nombre");
+		name.setLayoutX(0);
+		name.setLayoutY(30);
+		
+		nameC = new TextField();
+		nameC.setLayoutX(200);
+		nameC.setLayoutY(30);
+		
+		ap.getChildren().add(name);
+		ap.getChildren().add(nameC);
+		
+		
+		nameJ = new Label("Numero caballo");
+		nameJ.setLayoutX(0);
+		nameJ.setLayoutY(60);
+		
+		nameJi = new TextField();
+		nameJi.setLayoutX(200);
+		nameJi.setLayoutY(60);
+		
+		ap.getChildren().add(nameJ);
+		ap.getChildren().add(nameJi);
+		
+		monto = new Label("Monto a apostar");
+		monto.setLayoutX(0);
+		monto.setLayoutY(90);
+		
+		monto1 = new TextField();
+		monto1.setLayoutX(200);
+		monto1.setLayoutY(90);
+		
+		ap.getChildren().add(monto);
+		ap.getChildren().add(monto1);
+		
+		
+		Button apuesta = new Button("Agregar Apuesta");
+		apuesta.setLayoutX(0);
+		apuesta.setLayoutY(120);
+		ap.getChildren().add(apuesta);
+		
+		apuesta.setOnAction(e->{
+			String cc = cc1.getText();
+			String name = nameC.getText();
+			int nameJ = Integer.parseInt(nameJi.getText());
+			double monto = Double.parseDouble(monto1.getText());
+			Bet b = new Bet(cc,name,nameJ,monto);
+			System.out.println(raceCourse.getBets().toString());
+			ap.getChildren().clear();
+			apuesta();
+			
+		});
 	}
+}
 
 	
 	

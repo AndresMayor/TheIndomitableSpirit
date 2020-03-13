@@ -3,14 +3,14 @@ package model;
 public class Bet {
 	
 	
-	private int identificationCard;
+	private String identificationCard;
 	private String name;
-	private String nameHorseBet;
+	private int nameHorseBet;
 	private double betAmount;
 	
 	
 	
-	public Bet(int identificationCard, String name, String nameHorseBet, double betAmount) {
+	public Bet(String identificationCard, String name, int nameHorseBet, double betAmount) {
 		
 		this.identificationCard = identificationCard;
 		this.name = name;
@@ -20,13 +20,13 @@ public class Bet {
 
 
 
-	public int getIdentificationCard() {
+	public String getIdentificationCard() {
 		return identificationCard;
 	}
 
 
 
-	public void setIdentificationCard(int identificationCard) {
+	public void setIdentificationCard(String identificationCard) {
 		this.identificationCard = identificationCard;
 	}
 
@@ -44,13 +44,13 @@ public class Bet {
 
 
 
-	public String getNameHorseBet() {
+	public int getNameHorseBet() {
 		return nameHorseBet;
 	}
 
 
 
-	public void setNameHorseBet(String nameHorseBet) {
+	public void setNameHorseBet(int nameHorseBet) {
 		this.nameHorseBet = nameHorseBet;
 	}
 
