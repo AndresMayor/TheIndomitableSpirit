@@ -2,7 +2,7 @@ package model;
 
 
 
-import java.util.ArrayList;
+
 
 import collections.HashTable;
 import collections.Queue;
@@ -26,6 +26,7 @@ public class RaceCourse{
 		
 		horses = new Queue<HorseRider>();
 		bets = new HashTable<String, Bet>();
+		
 	}
 	
 	public void addHorse(HorseRider h) {
@@ -48,6 +49,7 @@ public class RaceCourse{
 		for (int i = 0; i < size; i++) {
 			def.offer(array[i]);
 		}
+		
 		return def;
 	}
 	
@@ -72,8 +74,62 @@ public class RaceCourse{
 		bets.insert(b.getIdentificationCard(), b);
 	}
 	
+	
+	
 	public HashTable<String,Bet> getBets(){
 		return bets;
 	}
+
+	public void setBets(HashTable<String, Bet> bets) {
+		this.bets = bets;
+	}
+	
+	
+	
+	
+	public String  searchBet(String cc) {
+		
+		
+		String thebest ="Has perdido la apuesta"+"\n";
+		
+		
+		Bet bet = bets.search(cc);
+		
+		
+		
+		if (bet.getNumberHorse()==game().peek().getTrack()) {
+			
+			thebest ="Has Ganado La Apuesta: "+ bet.getBetAmount()*2+ "\n" ;
+	
+		}
+		thebest += bet;
+		
+		return thebest;
+	}
+
+	
+	
+	
+		/*public String lista(HorseRider[] array) {
+			String cola = "";
+			
+			if (size==0) {
+				cola="no hay nada";
+			}
+			else {
+			for (int i=0;i<size;i++) {
+				
+			cola += ("elemento"+(i+1)+" "+array[0].toString()+"\n");
+			}
+			
+			}
+			return cola;
+			
+		
+	}*/
+
+	
+	
+	
 	
 }

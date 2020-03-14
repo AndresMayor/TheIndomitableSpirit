@@ -15,6 +15,7 @@ import javafx.scene.layout.AnchorPane;
 import model.*;
 
 
+
 public class WindowController implements Initializable {
 
 	
@@ -38,9 +39,8 @@ public class WindowController implements Initializable {
 	private TextField cc1;
 	private TextField monto1;
 	private Button agr;
-	private AnchorPane operations;
-	
 	@Override
+	
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
 			raceCourse = new RaceCourse();
@@ -125,6 +125,7 @@ public class WindowController implements Initializable {
 		
 		
 		cont=1;
+		
 		agr.setOnAction(e ->{
 			
 				
@@ -133,9 +134,11 @@ public class WindowController implements Initializable {
 				String nameJinete = nameJi.getText();
 				
 				HorseRider hr = new HorseRider(nameHorse,nameJinete,cont);
-			
+				
+				
 					raceCourse.addHorse(hr);
-					System.out.println(raceCourse.getHorses().toString());
+					
+					
 					nameC.setText("");
 					nameJi.setText("");
 					System.out.println(cont);
@@ -148,7 +151,7 @@ public class WindowController implements Initializable {
 					HorseRider hr = new HorseRider(nameHorse,nameJinete,cont);
 				
 						raceCourse.addHorse(hr);
-						System.out.println(raceCourse.getHorses().toString());
+						
 						nameC.setText("");
 						nameJi.setText("");
 						System.out.println(cont);
@@ -172,15 +175,12 @@ public class WindowController implements Initializable {
 		iniciarPartida.setLayoutX(0);
 		iniciarPartida.setLayoutY(0);
 		
-		Button apuesta = new Button("Realizar Apuesta");
-		apuesta.setLayoutX(0);
-		apuesta.setLayoutY(30);
+	
 		
 		Button ConsultarApuesta = new Button("Consultar Apuesta");
 		ConsultarApuesta.setLayoutX(0);
 		ConsultarApuesta.setLayoutY(60);
 		ap.getChildren().add(iniciarPartida);
-		ap.getChildren().add(apuesta);
 		ap.getChildren().add(ConsultarApuesta);
 		
 	
@@ -200,6 +200,7 @@ public class WindowController implements Initializable {
 	
 	}
 	public void apuesta() {
+		
 		cc = new Label("Numero de identificacion");
 		cc.setLayoutX(0);
 		cc.setLayoutY(0);
@@ -251,14 +252,23 @@ public class WindowController implements Initializable {
 		apuesta.setLayoutY(120);
 		ap.getChildren().add(apuesta);
 		
+	
+		
+	
+		
+		
+		
 		apuesta.setOnAction(e->{
+			
 			String cc = cc1.getText();
 			String name = nameC.getText();
 			int nameJ = Integer.parseInt(nameJi.getText());
 			double monto = Double.parseDouble(monto1.getText());
 			Bet b = new Bet(cc,name,nameJ,monto);
-			System.out.println(raceCourse.getBets().toString());
+			raceCourse.addBet(b);
+			
 			ap.getChildren().clear();
+			
 			apuesta();
 			
 		});

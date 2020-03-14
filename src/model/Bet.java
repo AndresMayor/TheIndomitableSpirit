@@ -5,16 +5,16 @@ public class Bet {
 	
 	private String identificationCard;
 	private String name;
-	private int nameHorseBet;
+	private int numberHorseBet;
 	private double betAmount;
 	
 	
 	
-	public Bet(String identificationCard, String name, int nameHorseBet, double betAmount) {
+	public Bet(String identificationCard, String name, int numberHorseBet, double betAmount) {
 		
 		this.identificationCard = identificationCard;
 		this.name = name;
-		this.nameHorseBet = nameHorseBet;
+		this.numberHorseBet = numberHorseBet;
 		this.betAmount = betAmount;
 	}
 
@@ -44,14 +44,14 @@ public class Bet {
 
 
 
-	public int getNameHorseBet() {
-		return nameHorseBet;
+	public int getNumberHorse() {
+		return numberHorseBet;
 	}
 
 
 
-	public void setNameHorseBet(int nameHorseBet) {
-		this.nameHorseBet = nameHorseBet;
+	public void setNumberHorse(int nameHorseBet) {
+		this.numberHorseBet = nameHorseBet;
 	}
 
 
@@ -64,6 +64,14 @@ public class Bet {
 
 	public void setBetAmount(double betAmount) {
 		this.betAmount = betAmount;
+	}
+
+
+
+	@Override
+	public String toString() {
+		return "Bet [identificationCard=" + identificationCard + ", name=" + name + ", nameHorseBet=" + numberHorseBet
+				+ ", betAmount=" + betAmount + "]";
 	}
 	
 	

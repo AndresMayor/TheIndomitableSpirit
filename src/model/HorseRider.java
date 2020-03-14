@@ -50,8 +50,9 @@ public class HorseRider {
 	@Override
 	public String toString() {
 		return "HorseRider [nameJinete=" + nameJinete + ", nameHorse=" + nameHorse + ", track=" + track + "]";
-	}
-	
-	
+}
+    
+
+
 	
 }
