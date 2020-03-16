@@ -48,6 +48,7 @@ public class RaceCourse{
 		}	
 		for (int i = 0; i < size; i++) {
 			def.offer(array[i]);
+			addHorse(array[i]);
 		}
 		
 		return def;
@@ -97,36 +98,33 @@ public class RaceCourse{
 		
 		
 		
-		if (bet.getNumberHorse()==game().peek().getTrack()) {
+		if (bet.getNumberHorse()  == horses.peek().getTrack()) {
 			
 			thebest ="Has Ganado La Apuesta: "+ bet.getBetAmount()*2+ "\n" ;
 	
 		}
-		thebest += bet;
+		thebest += bet ;
 		
 		return thebest;
 	}
 
 	
+	public String show() throws Exception {
+		String ms = "";
+
+		for (int i = 0; i < horses.getSize(); i++) {
+			HorseRider h = horses.dequeue();
+			ms += h.toString() + "\n";
+			addHorse(h);
+
+		}
+
+		return ms;
+	}
+
+
 	
 	
-		/*public String lista(HorseRider[] array) {
-			String cola = "";
-			
-			if (size==0) {
-				cola="no hay nada";
-			}
-			else {
-			for (int i=0;i<size;i++) {
-				
-			cola += ("elemento"+(i+1)+" "+array[0].toString()+"\n");
-			}
-			
-			}
-			return cola;
-			
-		
-	}*/
 
 	
 	

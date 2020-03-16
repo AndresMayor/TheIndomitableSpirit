@@ -74,6 +74,18 @@ public class Queue<T>{
 		}
 		return s;
 	}
+	public T dequeue() throws Exception {
+		if (isEmpty()) {
+			throw new Exception("The queue is empty");
+		}
+		size--;
+		T element = first.getElement();
+		first = first.getNext();
+		return element;
+	}
 	
-
+	public boolean isEmpty() {
+		return first == null;
+	}
+	
 }
