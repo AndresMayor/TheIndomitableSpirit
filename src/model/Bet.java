@@ -70,7 +70,7 @@ public class Bet {
 
 	@Override
 	public String toString() {
-		return "Bet [identificationCard=" + identificationCard + ", name=" + name + ", nameHorseBet=" + numberHorseBet
+		return "Bet [identificationCard=" + identificationCard + ", name=" + name + ", numberTrackHorse=" + numberHorseBet
 				+ ", betAmount=" + betAmount + "]";
 	}
 	

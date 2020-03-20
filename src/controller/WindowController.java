@@ -34,13 +34,13 @@ public class WindowController implements Initializable {
 	private Label name;
 	private Label nameJ;
 	private Label cc;
-	private Label monto;
-	private Label caballos;
+	private Label amount;
+	private Label showHorse;
 	private Label bet;
 	private TextField nameC;
-	private TextField nameJi;
+	private TextField nameHo;
 	private TextField cc1;
-	private TextField monto1;
+	private TextField amount1;
 	private Button agr;
 	
 	@Override
@@ -48,69 +48,38 @@ public class WindowController implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
 			raceCourse = new RaceCourse();
-			inicio();
-		/*	MenuItem siete  = new MenuItem("7");
-			MenuItem ocho = new MenuItem("8");
-			MenuItem nueve  = new MenuItem("9");
-			MenuItem diez = new MenuItem("10");
-			mb.getItems().clear();
-			mb.getItems().addAll(siete,ocho,nueve,diez);
-			
-			siete.setOnAction(e -> {
-				
-				addHorseRider(7);
-				number = 7;
-				
-			});
-			ocho.setOnAction(e -> {
-					
-				addHorseRider(8);
-				number = 8;
-				
-			});
-			nueve.setOnAction(e -> {
-					
-				addHorseRider(9);
-				number = 9;
-				
-			});
-			diez.setOnAction(e -> {
-				
-				addHorseRider(10);
-				number = 10;
-				
-			});*/
+			startt();
 		
 	}
 	
-	public void inicio() {
-		MenuItem siete  = new MenuItem("7");
-		MenuItem ocho = new MenuItem("8");
-		MenuItem nueve  = new MenuItem("9");
-		MenuItem diez = new MenuItem("10");
+	public void startt() {
+		MenuItem seven  = new MenuItem("7");
+		MenuItem eight = new MenuItem("8");
+		MenuItem nine  = new MenuItem("9");
+		MenuItem ten = new MenuItem("10");
 		mb.getItems().clear();
-		mb.getItems().addAll(siete,ocho,nueve,diez);
+		mb.getItems().addAll(seven,eight,nine,ten);
 		
-		siete.setOnAction(e -> {
+		seven.setOnAction(e -> {
 			
 			addHorseRider(7);
 			number = 7;
 			
 		});
-		ocho.setOnAction(e -> {
+		eight.setOnAction(e -> {
 				
 			addHorseRider(8);
 			number = 8;
 			
 		});
-		nueve.setOnAction(e -> {
+		nine.setOnAction(e -> {
 				
 			addHorseRider(9);
 			number = 9;
 			
 		});
-		diez.setOnAction(e -> {
-			
+		ten.setOnAction(e -> {
+
 			addHorseRider(10);
 			number = 10;
 			
@@ -121,7 +90,7 @@ public class WindowController implements Initializable {
 		
 		ap.getChildren().clear();
 			
-		name = new Label("Nombre del Caballo");
+		name = new Label("Horse name");
 		name.setLayoutX(0);
 		name.setLayoutY(0);
 		
@@ -131,17 +100,17 @@ public class WindowController implements Initializable {
 		
 		ap.getChildren().add(name);
 		ap.getChildren().add(nameC);
-		nameJ = new Label("Nombre del Jinete");
+		nameJ = new Label("Rider's name");
 		nameJ.setLayoutX(0);
 		nameJ.setLayoutY(30);
 		
-		nameJi = new TextField();
-		nameJi.setLayoutX(200);
-		nameJi.setLayoutY(30);
+		nameHo = new TextField();
+		nameHo.setLayoutX(200);
+		nameHo.setLayoutY(30);
 		ap.getChildren().add(nameJ);
-		ap.getChildren().add(nameJi);
+		ap.getChildren().add(nameHo);
 			
-		agr  = new Button("Agregar Jinete");
+		agr  = new Button("Add Rider");
 		agr.setLayoutX(0);
 		agr.setLayoutY(60);
 		ap.getChildren().add(agr);
@@ -152,34 +121,34 @@ public class WindowController implements Initializable {
 				
 				if(cont< number) {
 				String nameHorse = nameC.getText();
-				String nameJinete = nameJi.getText();
+				String nameJinete = nameHo.getText();
 				
 				HorseRider hr = new HorseRider(nameHorse,nameJinete,cont);
 				
 					raceCourse.addHorse(hr);
 					
 					nameC.setText("");
-					nameJi.setText("");
+					nameHo.setText("");
 					System.out.println(cont);
 					cont++;
 				}else if(cont==number) {
 
 					String nameHorse = nameC.getText();
-					String nameJinete = nameJi.getText();
+					String nameJinete = nameHo.getText();
 					
 					HorseRider hr = new HorseRider(nameHorse,nameJinete,cont);
 				
 						raceCourse.addHorse(hr);
 						
 						nameC.setText("");
-						nameJi.setText("");
+						nameHo.setText("");
 						System.out.println(cont);
 						ap.getChildren().clear();
 					
 					Runnable minuteThreads = new ThreadMinute();
 					Thread bets = new Thread(minuteThreads);
 					bets.start();
-					apuesta(bets);
+					bet(bets);
 				}
 			
 			}
@@ -188,43 +157,43 @@ public class WindowController implements Initializable {
 		
 	}
 	
-	public void inicializarPartida() {
+	public void initializeGame() {
 		
-		Button iniciarPartida = new Button("Iniciar Partida");
-		iniciarPartida.setLayoutX(0);
-		iniciarPartida.setLayoutY(0);
-		ap.getChildren().add(iniciarPartida);
+		Button startGame = new Button("Start Game");
+		startGame.setLayoutX(0);
+		startGame.setLayoutY(0);
+		ap.getChildren().add(startGame);
 	
-		Button ConsultarApuesta = new Button("Consultar Apuesta");
-		ConsultarApuesta.setLayoutX(0);
-		ConsultarApuesta.setLayoutY(150);
+		Button consultBet = new Button("Consult Bet");
+		consultBet.setLayoutX(0);
+		consultBet.setLayoutY(150);
 		
-		iniciarPartida.setOnAction(e -> {
-			cc = new Label(" Podio ");
+		startGame.setOnAction(e -> {
+			cc = new Label(" ------------ PODIUM ------------ ");
 			cc.setLayoutX(60);
 			cc.setLayoutY(0);
 			
 			raceCourse.sizeQueue(number);
 			
 			raceCourse.game();
-			iniciarPartida.setVisible(false);
+			startGame.setVisible(false);
 			try {
 				
-				caballos = new Label(raceCourse.show());
+				showHorse = new Label(raceCourse.show());
 			} catch (Exception e1) {
 			
 				e1.printStackTrace();
 			}
-			caballos.setLayoutX(0);
-			caballos.setLayoutY(30);
+			showHorse.setLayoutX(0);
+			showHorse.setLayoutY(30);
 			
-			ap.getChildren().add(caballos);
-			ap.getChildren().add(ConsultarApuesta);
+			ap.getChildren().add(showHorse);
+			ap.getChildren().add(consultBet);
 			ap.getChildren().add(cc);
 	
 			
 		});
-		ConsultarApuesta.setOnAction(e -> {
+		consultBet.setOnAction(e -> {
 		
 			searchBet();	
 		
@@ -236,7 +205,7 @@ public class WindowController implements Initializable {
 	public void searchBet(){
 	
 		ap.getChildren().clear();
-		cc = new Label("Cedula ");
+		cc = new Label("Identification number");
 		cc.setLayoutX(0);
 		cc.setLayoutY(0);
 		
@@ -247,13 +216,13 @@ public class WindowController implements Initializable {
 		ap.getChildren().add(cc);
 		ap.getChildren().add(cc1);
 		
-		Button ConsultarApuesta = new Button("Consultar Apuesta");
-		ConsultarApuesta.setLayoutX(0);
-		ConsultarApuesta.setLayoutY(30);
+		Button consultBet = new Button("Consult Bet");
+		consultBet.setLayoutX(0);
+		consultBet.setLayoutY(30);
 		
-		ap.getChildren().add(ConsultarApuesta);
+		ap.getChildren().add(consultBet);
 
-		ConsultarApuesta.setOnAction(e->{
+		consultBet.setOnAction(e->{
 
 			bet = new Label( raceCourse.searchBet( cc1.getText()) );
 			
@@ -266,11 +235,11 @@ public class WindowController implements Initializable {
 			
 		});
 		
-		Button colsutarnuevaapuesta = new Button("Borra y consultar nueva apuesta");
-		colsutarnuevaapuesta.setLayoutX(0);
-		colsutarnuevaapuesta.setLayoutY(60);
-		ap.getChildren().add(colsutarnuevaapuesta);
-		colsutarnuevaapuesta.setOnAction(e->{
+		Button consultNewBet = new Button("Delete and check new bet");
+		consultNewBet.setLayoutX(0);
+		consultNewBet.setLayoutY(60);
+		ap.getChildren().add(consultNewBet);
+		consultNewBet.setOnAction(e->{
 		
 			bet.setText("");
 			searchBet();
@@ -302,31 +271,31 @@ public class WindowController implements Initializable {
 		ap.getChildren().clear();
 		raceCourse.rematch();
 		try {
-			caballos = new Label(raceCourse.show());
+			showHorse = new Label(raceCourse.show());
 		} catch (Exception e1) {
 		
 			e1.printStackTrace();
 		}
-		caballos.setLayoutX(0);
-		caballos.setLayoutY(0);
+		showHorse.setLayoutX(0);
+		showHorse.setLayoutY(0);
 		
-		ap.getChildren().add(caballos);
+		ap.getChildren().add(showHorse);
 		
-		Button ConsultarApuesta = new Button("Consultar Apuesta");
-		ConsultarApuesta.setLayoutX(0);
-		ConsultarApuesta.setLayoutY(150);
+		Button consultBet = new Button("Consult Bet");
+		consultBet.setLayoutX(0);
+		consultBet.setLayoutY(150);
 		
-		ap.getChildren().add(ConsultarApuesta);
+		ap.getChildren().add(consultBet);
 
-		ConsultarApuesta.setOnAction(e->{
+		consultBet.setOnAction(e->{
 		
 			searchBet();
 	});
 	}
 
-	public void apuesta(Thread bets) {
+	public void bet(Thread bets) {
 		
-		cc = new Label("Numero de identificacion");
+		cc = new Label("Identification Number");
 		cc.setLayoutX(0);
 		cc.setLayoutY(0);
 		
@@ -337,7 +306,7 @@ public class WindowController implements Initializable {
 		ap.getChildren().add(cc);
 		ap.getChildren().add(cc1);
 		
-		name = new Label("Nombre");
+		name = new Label("Name");
 		name.setLayoutX(0);
 		name.setLayoutY(30);
 		
@@ -348,63 +317,63 @@ public class WindowController implements Initializable {
 		ap.getChildren().add(name);
 		ap.getChildren().add(nameC);
 		
-		nameJ = new Label("Numero caballo");
+		nameJ = new Label("Horse track");
 		nameJ.setLayoutX(0);
 		nameJ.setLayoutY(60);
 		
-		nameJi = new TextField();
-		nameJi.setLayoutX(200);
-		nameJi.setLayoutY(60);
+		nameHo = new TextField();
+		nameHo.setLayoutX(200);
+		nameHo.setLayoutY(60);
 		
 		ap.getChildren().add(nameJ);
-		ap.getChildren().add(nameJi);
+		ap.getChildren().add(nameHo);
 		
-		monto = new Label("Monto a apostar");
-		monto.setLayoutX(0);
-		monto.setLayoutY(90);
+		amount = new Label("Bet Amount");
+		amount.setLayoutX(0);
+		amount.setLayoutY(90);
 		
-		monto1 = new TextField();
-		monto1.setLayoutX(200);
-		monto1.setLayoutY(90);
+		amount1 = new TextField();
+		amount1.setLayoutX(200);
+		amount1.setLayoutY(90);
 		
-		ap.getChildren().add(monto);
-		ap.getChildren().add(monto1);
+		ap.getChildren().add(amount);
+		ap.getChildren().add(amount1);
 		
-		Button apuesta = new Button("Agregar Apuesta");
-		apuesta.setLayoutX(0);
-		apuesta.setLayoutY(120);
-		ap.getChildren().add(apuesta);
+		Button bett = new Button("Add Bet");
+		bett.setLayoutX(0);
+		bett.setLayoutY(120);
+		ap.getChildren().add(bett);
 		
 		try {
-			caballos = new Label(raceCourse.show());
+			showHorse = new Label(raceCourse.show());
 		} catch (Exception e1) {
 		
 			e1.printStackTrace();
 		}
-		caballos.setLayoutX(0);
-		caballos.setLayoutY(150);
+		showHorse.setLayoutX(0);
+		showHorse.setLayoutY(150);
 		
-		ap.getChildren().add(caballos);
+		ap.getChildren().add(showHorse);
 	
 		if(bets.isAlive()){
 		
-		apuesta.setOnAction(e->{
+			bett.setOnAction(e->{
 		
 			String cc = cc1.getText();
 			String name = nameC.getText();
-			int nameJ = Integer.parseInt(nameJi.getText());
-			double monto = Double.parseDouble(monto1.getText());
+			int nameJ = Integer.parseInt(nameHo.getText());
+			double monto = Double.parseDouble(amount1.getText());
 			Bet b = new Bet(cc,name,nameJ,monto);
 			raceCourse.addBet(b);
 			ap.getChildren().clear();
-			apuesta(bets);
+			bet(bets);
 
 		});
 		
 		}
 		else {
 			ap.getChildren().clear();
-			inicializarPartida();
+			initializeGame();
 		}	
 	}
 }

@@ -91,7 +91,7 @@ public class RaceCourse{
 	public String  searchBet(String cc) {
 		
 		
-		String thebest ="Has perdido la apuesta"+"\n";
+		String thebest ="You LOST the bet :("+"\n";
 		
 		
 		Bet bet = bets.search(cc);
@@ -100,7 +100,7 @@ public class RaceCourse{
 		
 		if (bet.getNumberHorse()  == horses.peek().getTrack()) {
 			
-			thebest ="Has Ganado La Apuesta: "+ bet.getBetAmount()*2+ "\n" ;
+			thebest ="You WON the bet :) "+ bet.getBetAmount()*2+ "\n" ;
 	
 		}
 		thebest += bet ;

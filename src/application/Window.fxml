@@ -6,7 +6,7 @@
 
 <AnchorPane fx:id="ap" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.WindowController">
    <children>
-      <MenuButton fx:id="mb" layoutX="178.0" layoutY="163.0" mnemonicParsing="false" text="Cuantos Jinetes van a Compretir ?">
+      <MenuButton fx:id="mb" layoutX="178.0" layoutY="163.0" mnemonicParsing="false" text="How many riders are going to compete?">
         <items>
           <MenuItem mnemonicParsing="false" text="Action 1" />
           <MenuItem mnemonicParsing="false" text="Action 2" />
