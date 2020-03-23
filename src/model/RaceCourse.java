@@ -11,6 +11,7 @@ import collections.Stack;
 public class RaceCourse{
 	
 	private Queue<HorseRider> horses;
+	private Queue<HorseRider> resultado;
 	private HashTable<String, Bet> bets;
 	private int size;
 	
@@ -23,7 +24,7 @@ public class RaceCourse{
 	}
 
 	public RaceCourse() {
-		
+		resultado = new Queue<HorseRider>();
 		horses = new Queue<HorseRider>();
 		bets = new HashTable<String, Bet>();
 		
@@ -50,7 +51,7 @@ public class RaceCourse{
 			def.offer(array[i]);
 			addHorse(array[i]);
 		}
-		
+		resultado = def;
 		return def;
 	}
 	
@@ -59,7 +60,7 @@ public class RaceCourse{
 	}
 	
 	public Queue<HorseRider> rematch() {
-		Queue<HorseRider> def = game();
+		Queue<HorseRider> def = resultado;
 		Stack<HorseRider> rem = new Stack<HorseRider>();
 		
 		for (int i = 0; i < size; i++) {
@@ -68,6 +69,8 @@ public class RaceCourse{
 		for (int i = 0; i < size; i++) {
 			def.offer(rem.pop());
 		}
+		resultado = null;
+		resultado = def;
 		return def;
 	}
 	
@@ -121,7 +124,19 @@ public class RaceCourse{
 
 		return ms;
 	}
+	
+	public String showRematch() throws Exception {
+		String ms = "";
 
+		for (int i = 0; i < size; i++) {
+			HorseRider h = resultado.dequeue();
+			ms += h.toString() + "\n";
+			addHorse(h);
+
+		}
+
+		return ms;
+	}
 
 	
 	

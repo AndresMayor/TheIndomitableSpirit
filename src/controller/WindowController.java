@@ -246,7 +246,7 @@ public class WindowController implements Initializable {
 			
 		});
 		
-		Button remacth = new Button("Remacth");
+		Button remacth = new Button("Rematch");
 		remacth.setLayoutX(0);
 		remacth.setLayoutY(90);
 		
@@ -269,9 +269,14 @@ public class WindowController implements Initializable {
 	
 	private void remacth() {
 		ap.getChildren().clear();
-		raceCourse.rematch();
 		try {
-			showHorse = new Label(raceCourse.show());
+			raceCourse.rematch();
+		} catch (Exception e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
+		try {
+			showHorse = new Label(raceCourse.showRematch());
 		} catch (Exception e1) {
 		
 			e1.printStackTrace();
