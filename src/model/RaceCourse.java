@@ -65,12 +65,15 @@ public class RaceCourse{
 		
 		for (int i = 0; i < size; i++) {
 			rem.push(def.poll());
+		
 		}
 		for (int i = 0; i < size; i++) {
 			def.offer(rem.pop());
+			
 		}
 		resultado = null;
 		resultado = def;
+		horses =def;
 		return def;
 	}
 	

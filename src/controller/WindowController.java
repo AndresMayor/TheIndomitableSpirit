@@ -51,10 +51,12 @@ public class WindowController implements Initializable {
 			raceCourse = new RaceCourse();
 			startt();
 			
+			
 		
 	}
 	
 	public void startt() {
+		
 		MenuItem seven  = new MenuItem("7");
 		MenuItem eight = new MenuItem("8");
 		MenuItem nine  = new MenuItem("9");
@@ -254,14 +256,24 @@ public class WindowController implements Initializable {
 		remacth.setLayoutY(90);
 		
 		ap.getChildren().add(remacth);
+		
+		
 		remacth.setOnAction(e->{
 			
 			ap.getChildren().clear();
+			try {
+				raceCourse.rematch();
+			} catch (Exception e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}	
+			
 			Runnable minuteThreads = new ThreadMinute();
 			Thread bets = new Thread(minuteThreads);
 			bets.start();
+			
 			bet(bets);
-			//remacth();
+			
 		});
 		
 		Button nuevaPartida = new Button("Nueva Partida");
@@ -309,7 +321,7 @@ public class WindowController implements Initializable {
 
 	public void bet(Thread bets) {
 		
-		contt = 1;
+	
 		
 		cc = new Label("Identification Number");
 		cc.setLayoutX(0);
@@ -360,7 +372,7 @@ public class WindowController implements Initializable {
 		bett.setLayoutY(120);
 		ap.getChildren().add(bett);
 		
-		if (contt == 1) {
+		
 		
 		try {
 			showHorse = new Label(raceCourse.show());
@@ -368,22 +380,7 @@ public class WindowController implements Initializable {
 		
 			e1.printStackTrace();
 		}
-		}else {
-			
-			try {
-				raceCourse.rematch();
-			} catch (Exception e2) {
-				// TODO Auto-generated catch block
-				e2.printStackTrace();
-			}
-			try {
-				showHorse = new Label(raceCourse.showRematch());
-			} catch (Exception e1) {
-			
-				e1.printStackTrace();
-			}
-			
-		}
+		
 		
 		showHorse.setLayoutX(0);
 		showHorse.setLayoutY(150);
