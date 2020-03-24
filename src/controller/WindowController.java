@@ -42,6 +42,7 @@ public class WindowController implements Initializable {
 	private TextField cc1;
 	private TextField amount1;
 	private Button agr;
+	private int contt;
 	
 	@Override
 	
@@ -49,6 +50,7 @@ public class WindowController implements Initializable {
 		
 			raceCourse = new RaceCourse();
 			startt();
+			
 		
 	}
 	
@@ -149,6 +151,7 @@ public class WindowController implements Initializable {
 					Thread bets = new Thread(minuteThreads);
 					bets.start();
 					bet(bets);
+					contt++;
 				}
 			
 			}
@@ -252,7 +255,13 @@ public class WindowController implements Initializable {
 		
 		ap.getChildren().add(remacth);
 		remacth.setOnAction(e->{
-			remacth();
+			
+			ap.getChildren().clear();
+			Runnable minuteThreads = new ThreadMinute();
+			Thread bets = new Thread(minuteThreads);
+			bets.start();
+			bet(bets);
+			//remacth();
 		});
 		
 		Button nuevaPartida = new Button("Nueva Partida");
@@ -267,7 +276,7 @@ public class WindowController implements Initializable {
 		
 	}
 	
-	private void remacth() {
+	/*private void remacth() {
 		ap.getChildren().clear();
 		try {
 			raceCourse.rematch();
@@ -296,9 +305,11 @@ public class WindowController implements Initializable {
 		
 			searchBet();
 	});
-	}
+	}*/
 
 	public void bet(Thread bets) {
+		
+		contt = 1;
 		
 		cc = new Label("Identification Number");
 		cc.setLayoutX(0);
@@ -349,12 +360,31 @@ public class WindowController implements Initializable {
 		bett.setLayoutY(120);
 		ap.getChildren().add(bett);
 		
+		if (contt == 1) {
+		
 		try {
 			showHorse = new Label(raceCourse.show());
 		} catch (Exception e1) {
 		
 			e1.printStackTrace();
 		}
+		}else {
+			
+			try {
+				raceCourse.rematch();
+			} catch (Exception e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}
+			try {
+				showHorse = new Label(raceCourse.showRematch());
+			} catch (Exception e1) {
+			
+				e1.printStackTrace();
+			}
+			
+		}
+		
 		showHorse.setLayoutX(0);
 		showHorse.setLayoutY(150);
 		
@@ -370,7 +400,9 @@ public class WindowController implements Initializable {
 			double monto = Double.parseDouble(amount1.getText());
 			Bet b = new Bet(cc,name,nameJ,monto);
 			raceCourse.addBet(b);
+			
 			ap.getChildren().clear();
+			
 			bet(bets);
 
 		});
@@ -381,4 +413,5 @@ public class WindowController implements Initializable {
 			initializeGame();
 		}	
 	}
+
 }
