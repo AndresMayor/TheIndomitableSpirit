@@ -1,12 +1,7 @@
-/**
- * 
- */
+
 package collections;
 
-/**
- * @author 
- *
- */
+
 public class Node<T> {
 	
 	private T element;

@@ -1,12 +1,7 @@
-/**
- * 
- */
+
 package collections;
 
-/**
- * @author 
- * 	The Stack Class allows stacking objects of particular type T
- */
+
 public class Stack<T> implements StackInterface<T> {
 	
 	/**

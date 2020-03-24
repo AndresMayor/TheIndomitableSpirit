@@ -1,12 +1,6 @@
-/**
- * 
- */
+
 package collections;
 
-/**
- * @author
- *
- */
 public class Queue<T>{
 	
 	/**
@@ -40,7 +34,7 @@ public class Queue<T>{
 			laters = laters.getNext();
 		}
 		size++;
-		System.out.println("Queue of type: " + object.toString() +", size = " + size);
+		//System.out.println("Queue of type: " + object.toString() +", size = " + size);
 	}
 
 	public T peek() {

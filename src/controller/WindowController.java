@@ -42,7 +42,7 @@ public class WindowController implements Initializable {
 	private TextField cc1;
 	private TextField amount1;
 	private Button agr;
-	private int contt;
+
 	
 	@Override
 	
@@ -133,7 +133,7 @@ public class WindowController implements Initializable {
 					
 					nameC.setText("");
 					nameHo.setText("");
-					System.out.println(cont);
+					//System.out.println(cont);
 					cont++;
 				}else if(cont==number) {
 
@@ -146,14 +146,14 @@ public class WindowController implements Initializable {
 						
 						nameC.setText("");
 						nameHo.setText("");
-						System.out.println(cont);
+						//System.out.println(cont);
 						ap.getChildren().clear();
 					
 					Runnable minuteThreads = new ThreadMinute();
 					Thread bets = new Thread(minuteThreads);
 					bets.start();
 					bet(bets);
-					contt++;
+					
 				}
 			
 			}
@@ -181,6 +181,7 @@ public class WindowController implements Initializable {
 			raceCourse.sizeQueue(number);
 			
 			raceCourse.game();
+			
 			startGame.setVisible(false);
 			try {
 				
@@ -261,6 +262,7 @@ public class WindowController implements Initializable {
 		remacth.setOnAction(e->{
 			
 			ap.getChildren().clear();
+			
 			try {
 				raceCourse.rematch();
 			} catch (Exception e2) {

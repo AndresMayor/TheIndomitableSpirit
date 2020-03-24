@@ -1,8 +1,6 @@
 package collections;
 
-/**
- * @author 
- */
+
 public class HNode<K,V> {
 		private K key;
 		private V value;
